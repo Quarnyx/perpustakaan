@@ -176,11 +176,10 @@
                     data: {
                         id: id
                     }, //set data
-                    beforeSend: function () { //add this before send to disable the button once we submit it so that we prevent the multiple click
+                    beforeSend: function () {
                     },
                     success: function (
-                        response) { //once the request successfully process to the server side it will return result here
-                        // Reload lists of table
+                        response) {
                         $('#tabelPetugas').DataTable().ajax.reload();
 
                         Swal.fire('Akun Terhapus', response, 'success')
@@ -190,8 +189,5 @@
                 Swal.fire('Aksi batal', '', 'info')
             }
         });
-
-        // Perform the edit action, e.g., open a modal or redirect to an edit page
-
     });
 </script>

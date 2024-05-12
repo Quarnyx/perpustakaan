@@ -2,18 +2,18 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Data Petugas</h4>
+                <h4 class="card-title mb-4">Data Angggota Perpustakaan</h4>
                 <div class="table-responsive">
 
-                    <table id="tabelPetugas" class="table dt-responsive nowrap w-100">
+                    <table id="tabelAnggota" class="table dt-responsive nowrap w-100">
                         <thead class="table-light">
                             <tr>
                                 <th>No</th>
                                 <th></th>
+                                <th>NIS</th>
                                 <th>Nama</th>
-                                <th>Username</th>
-                                <th>Level</th>
-                                <th>Status</th>
+                                <th>Kontak</th>
+                                <th>Email</th>
                                 <th>Aksi</th>
 
                             </tr>
@@ -54,7 +54,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script>
-    var dataTable = $('#tabelPetugas').DataTable({
+    var dataTable = $('#tabelAnggota').DataTable({
         serverMethod: 'post',
         select: {
             style: "multi"
@@ -69,7 +69,7 @@
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
         },
         ajax: {
-            url: './pages/petugas/proses-petugas.php?act=tabelpetugas',
+            url: './pages/anggota/proses-anggota.php?act=tabelanggota',
             type: 'POST',
             dataType: 'json'
         },
@@ -86,30 +86,27 @@
             }
         },
         {
-            data: 'nama_petugas',
+            data: 'nis',
             className: 'mb-0 h6'
         },
         {
-            data: 'username'
+            data: 'nama_anggota'
         },
         {
-            data: 'level'
+            data: 'no_telp'
         },
         {
-            data: 'status'
+            data: 'email'
         },
         {
             data: null,
             render: function (data, type, row) {
                 return '<div class="button-items">' +
-                    '<button type="button" class="btn btn-light waves-effect waves-light editpetugas" data-bs-toggle="modal" data-bs-target="" data-id="' +
+                    '<button type="button" class="btn btn-light waves-effect waves-light editanggota" data-bs-toggle="modal" data-bs-target="" data-id="' +
                     row.id +
                     '"><i class="ri-user-2-line align-middle me-2"></i> Edit Profil</button>'
                     +
-                    '<button type="button" class="btn btn-light waves-effect waves-light editpassword" data-bs-toggle="modal" data-bs-target="#editPassword" data-id="' +
-                    row.id +
-                    '"><i class="ri-key-2-line align-middle me-2"></i>Ganti Password</button>' +
-                    '<button type="button" class="btn btn-danger waves-effect waves-light hapus-petugas" data-id="' +
+                    '<button type="button" class="btn btn-danger waves-effect waves-light hapus-anggota" data-id="' +
                     row.id +
                     '"><i class=" ri-delete-bin-line align-middle me-2"></i> Hapus</button>' +
                     '</div>';
@@ -124,7 +121,7 @@
     $('.btn-tambah').on('click', function () {
         var level = $(this).attr("level");
         $.ajax({
-            url: 'pages/petugas/tambah.php',
+            url: 'pages/anggota/tambah.php',
             method: 'post',
             data: { level: level },
             success: function (data) {
@@ -134,10 +131,10 @@
         });
         $('#modal').modal('show');
     });
-    $('#tabelPetugas').on('click', '.editpetugas', function () {
+    $('#tabelAnggota').on('click', '.editanggota', function () {
         var id = $(this).data("id");
         $.ajax({
-            url: 'pages/petugas/update.php',
+            url: 'pages/anggota/update.php',
             method: 'post',
             data: { id: id },
             success: function (data) {
@@ -147,20 +144,7 @@
         });
         $('#modal').modal('show');
     });
-    $('#tabelPetugas').on('click', '.editpassword', function () {
-        var id = $(this).data("id");
-        $.ajax({
-            url: 'pages/petugas/updatepass.php',
-            method: 'post',
-            data: { id: id },
-            success: function (data) {
-                $('#tampil_data').html(data);
-                document.getElementById("judul").innerHTML = 'Ganti Password';
-            }
-        });
-        $('#modal').modal('show');
-    });
-    $('#tabelPetugas').on('click', '.hapus-petugas', function () {
+    $('#tabelAnggota').on('click', '.hapus-anggota', function () {
         var id = $(this).data('id');
         Swal.fire({
             icon: 'warning',
@@ -172,16 +156,15 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: "POST",
-                    url: 'pages/petugas/proses-petugas.php?act=hapusPetugas',
+                    url: 'pages/anggota/proses-anggota.php?act=hapusAnggota',
                     data: {
                         id: id
                     }, //set data
-                    beforeSend: function () { //add this before send to disable the button once we submit it so that we prevent the multiple click
+                    beforeSend: function () {
                     },
                     success: function (
-                        response) { //once the request successfully process to the server side it will return result here
-                        // Reload lists of table
-                        $('#tabelPetugas').DataTable().ajax.reload();
+                        response) {
+                        $('#tabelAnggota').DataTable().ajax.reload();
 
                         Swal.fire('Akun Terhapus', response, 'success')
                     }
@@ -190,8 +173,6 @@
                 Swal.fire('Aksi batal', '', 'info')
             }
         });
-
-        // Perform the edit action, e.g., open a modal or redirect to an edit page
-
     });
+
 </script>

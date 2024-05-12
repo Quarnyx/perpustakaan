@@ -34,7 +34,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="?page=inputpel_sampah">Katalog Buku</a></li>
-                        <li><a href="?page=datapel_sampah">Anggota</a></li>
+                        <li><a href="?page=anggota">Anggota</a></li>
                         <li><a href="?page=petugas">Pengurus</a></li>
                     </ul>
                 </li>

@@ -1,6 +1,14 @@
+<?php
+include '../../config.php';
+
+$id = $_POST["id"];
+$sql = mysqli_query($conn, "SELECT * FROM anggota WHERE id = $id");
+$row = mysqli_fetch_array($sql);
+
+?>
 <form class="" id="formAnggota" enctype="multipart/form-data">
     <div class="row">
-
+        <input type="hidden" name="id" value="<?php echo $id ?>">
         <div class="row">
             <div class="col-md-6">
                 <div class="card border border-primary">
@@ -11,12 +19,13 @@
                     <div class="card-body">
                         <div class="text-center mb-5">
 
-                            <img id="preview" src="assets/images/users/default.png" alt="avatar-5"
+                            <img id="preview" src="assets/images/users/<?php echo $row["foto"]; ?>" alt="avatar-5"
                                 class="rounded-circle avatar-xl">
 
                         </div>
-                        <h5 class="card-title">Pilih Foto</h5>
+                        <h5 class="card-title">Ganti Foto</h5>
                         <div class="input-group">
+                            <input type="hidden" name="foto_lama" value="<?= $row['foto'] ?>">
                             <input type="file" class="form-control" id="foto" name="foto">
                         </div>
                     </div>
@@ -26,7 +35,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Nama Lengkap</label>
                     <input type="text" class="form-control" id="nama_anggota" placeholder="Nama Lengkap" required=""
-                        name="nama_anggota">
+                        name="nama_anggota" value="<?= $row['nama_anggota'] ?>">
                     <div class="error" id="namaError">
 
                     </div>
@@ -34,7 +43,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">NIS</label>
                     <input type="number" class="form-control" id="nis" placeholder="Nomor Induk Siswa" required=""
-                        name="nis">
+                        name="nis" value="<?= $row['nis'] ?>">
                     <div class="error" id="nisError">
 
                     </div>
@@ -51,14 +60,14 @@
             <div class="mb-3">
                 <label for="" class="form-label">Tempat Lahir</label>
                 <input type="text" class="form-control" id="tempat_lahir" placeholder="Tempat Lahir" required=""
-                    name="tempat_lahir">
+                    name="tempat_lahir" value="<?= $row['tempat_lahir'] ?>">
             </div>
         </div>
         <div class="col-md-4">
             <div class="mb-3">
                 <label for="" class="form-label">Tanggal Lahir</label>
                 <input type="date" class="form-control" id="tanggal_lahir" placeholder="Tanggal Lahir" required=""
-                    name="tanggal_lahir">
+                    name="tanggal_lahir" value="<?= $row['tanggal_lahir'] ?>">
             </div>
         </div>
 
@@ -66,8 +75,15 @@
             <div class="mb-3">
                 <label for="" class="form-label">Jenis Kelamin</label>
                 <select class="form-select" id="jenis_kelamin" required="" name="jenis_kelamin">
-                    <option selected="" value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
+                    <?php
+                    if ($row['jenis_kelamin'] == 'Laki-laki') {
+                        echo '<option selected="" value="Laki-laki">Laki-laki</option>';
+                        echo '<option value="Perempuan">Perempuan</option>';
+                    } else {
+                        echo '<option value="Laki-laki">Laki-laki</option>';
+                        echo '<option selected="" value="Perempuan">Perempuan</option>';
+                    }
+                    ?>
                 </select>
 
             </div>
@@ -78,13 +94,14 @@
             <div class="mb-3">
                 <label for="" class="form-label">No. Telepon</label>
                 <input type="number" class="form-control" id="no_telp" placeholder="08xxxxxxx" required=""
-                    name="no_telp">
+                    name="no_telp" value="<?= $row['no_telp'] ?>">
             </div>
         </div>
         <div class="col-md-4">
             <div class="mb-3">
                 <label for="" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email" required="" name="email">
+                <input value="<?= $row['email'] ?>" type="email" class="form-control" id="email" placeholder="Email"
+                    required="" name="email">
             </div>
         </div>
 
@@ -92,15 +109,23 @@
             <div class="mb-3">
                 <label for="" class="form-label">Status Akun</label>
                 <select class="form-select" id="" required="" name="status">
-                    <option selected="" value="aktif">Aktif</option>
-                    <option value="nonaktif">Nonaktif</option>
+                    <?php
+                    if ($row['status'] == 'aktif') {
+                        echo '<option selected="" value="aktif">Aktif</option>';
+                        echo '<option value="nonaktif">Nonaktif</option>';
+                    } else {
+                        echo '<option value="aktif">Aktif</option>';
+                        echo '<option selected="" value="nonaktif">Nonaktif</option>';
+                    }
+
+                    ?>
                 </select>
 
             </div>
         </div>
     </div>
     <div>
-        <button class="btn btn-primary" type="submit" id="submit">Tambah</button>
+        <button class="btn btn-primary" type="submit" id="submit">Update</button>
     </div>
 </form>
 <script>
@@ -146,7 +171,7 @@
 
         e.preventDefault(); //prevent the form from submitting normally
         $.ajax({
-            url: "pages/anggota/proses-anggota.php?act=tambahAnggota",
+            url: "pages/anggota/proses-anggota.php?act=updateAnggota",
             type: "POST",
             data: new FormData(this),
             contentType: false,

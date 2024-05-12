@@ -23,14 +23,12 @@ if ($_GET['act'] == 'cekUsername') {
     }
 }
 if ($_GET['act'] == 'tambahPetugas') {
-    $nama_petugas = $_POST['nama_petugas'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $level = $_POST['level'];
-    $status = $_POST['status'];
+    $nama_petugas = mysqli_real_escape_string($conn, $_POST['nama_petugas']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+    $level = mysqli_real_escape_string($conn, $_POST['level']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
     $foto = $_FILES['foto']['name'];
-
-    $username = mysqli_real_escape_string($conn, $username);
     // foto
     $ekstensi_diperbolehkan = array('png', 'jpg', 'jpeg', 'gif');
     $x = explode('.', $foto);
@@ -55,15 +53,13 @@ if ($_GET['act'] == 'tambahPetugas') {
 
 }
 if ($_GET['act'] == 'updatePetugas') {
-    $id = $_POST['id'];
-    $nama_petugas = $_POST['nama_petugas'];
-    $username = $_POST['username'];
-    $level = $_POST['level'];
-    $status = $_POST['status'];
+    $id = mysqli_real_escape_string($conn, $_POST['id']);
+    $nama_petugas = mysqli_real_escape_string($conn, $_POST['nama_petugas']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $level = mysqli_real_escape_string($conn, $_POST['level']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
     $foto_baru = $_FILES['foto']['name'];
     $foto = $_POST['foto_lama'];
-
-    $username = mysqli_real_escape_string($conn, $username);
     // foto
     $ekstensi_diperbolehkan = array('png', 'jpg', 'jpeg', 'gif');
     $x = explode('.', $foto);
@@ -82,16 +78,14 @@ if ($_GET['act'] == 'updatePetugas') {
             $sql = "UPDATE petugas SET nama_petugas = '$nama_petugas', username = '$username', level = '$level', status = '$status', foto = '$foto_baru' WHERE id = '$id'";
         }
     } else {
-        //Sql jika tidak menggunakan foto, maka akan memakai gambar foto_default.png
-        $sql = "UPDATE petugas SET nama_petugas = '$nama_petugas', username = '$username', level = '$level', status = '$status', WHERE id = '$id'";
+        //Sql jika tidak menggunakan foto
+        $sql = "UPDATE petugas SET nama_petugas = '$nama_petugas', username = '$username', level = '$level', status = '$status' WHERE id = '$id'";
     }
     $query = mysqli_query($conn, $sql);
 }
 if ($_GET['act'] == 'updatepass') {
     $id = $_POST['id'];
     $password = md5($_POST["password"]);
-
-    //Sql jika tidak menggunakan foto, maka akan memakai gambar foto_default.png
     $sql = "UPDATE petugas SET password = '$password' WHERE id = '$id'";
 
     $query = mysqli_query($conn, $sql);
