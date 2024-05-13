@@ -34,6 +34,10 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="?page=inputpel_sampah">Katalog Buku</a></li>
+                        <li><a href="?page=penerbit">Penerbit</a></li>
+                        <li><a href="?page=supplier">Supplier</a></li>
+                        <li><a href="?page=penulis">Penulis</a></li>
+                        <li><a href="?page=kategori">Kategori</a></li>
                         <li><a href="?page=anggota">Anggota</a></li>
                         <li><a href="?page=petugas">Pengurus</a></li>
                     </ul>
