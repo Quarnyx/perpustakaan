@@ -20,4 +20,7 @@ if ($_GET['page'] == "penulis") {
 if ($_GET['page'] == "kategori") {
     include "./pages/kategori/index.php";
 }
+if ($_GET['page'] == "buku") {
+    include "./pages/buku/index.php";
+}
 ?>

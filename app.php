@@ -1,6 +1,8 @@
 <?php
 session_start();
 $level = $_SESSION['level'];
+$sessionid = $_SESSION['id'];
+
 if (!isset($_SESSION['username'])) {
     header("location:login.php?pass=invalid");
 }
@@ -99,6 +101,7 @@ $pager = $_GET['page'];
     <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
+
     <script src="assets/libs/metismenu/metisMenu.min.js"></script>
     <script src="assets/libs/simplebar/simplebar.min.js"></script>
     <script src="assets/libs/node-waves/waves.min.js"></script>

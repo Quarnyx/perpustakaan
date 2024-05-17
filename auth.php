@@ -13,6 +13,7 @@ if (isset($_POST['login'])) {
         $row = $result->fetch_assoc();
         if ($password === $row['password']) {
             $_SESSION['nama_petugas'] = $row['nama_petugas'];
+            $_SESSION['id'] = $row['id'];
             $_SESSION['username'] = $username;
             $_SESSION['level'] = $row['level'];
             header('Location: app.php?page=dashboard');

@@ -33,7 +33,7 @@
                         <span>Data Master</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="?page=inputpel_sampah">Katalog Buku</a></li>
+                        <li><a href="?page=buku">Katalog Buku</a></li>
                         <li><a href="?page=penerbit">Penerbit</a></li>
                         <li><a href="?page=supplier">Supplier</a></li>
                         <li><a href="?page=penulis">Penulis</a></li>
