@@ -48,6 +48,8 @@ $pager = $_GET['page'];
 
                     <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
                     <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+                    <!-- apexcharts -->
+                    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
                     <!-- Main Content Start Here -->
                     <?php include "partials/content.php"; ?>
                     <!-- Content End -->
@@ -111,8 +113,7 @@ $pager = $_GET['page'];
     <!-- Chart JS -->
     <script src="assets/libs/chart.js/Chart.bundle.min.js"></script>
     <script src="assets/js/pages/chartjs.init.js"></script>
-    <!-- apexcharts -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
 
     <!-- jquery.vectormap map -->
     <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -127,7 +128,7 @@ $pager = $_GET['page'];
     <!-- Datatable init js -->
 
     <script src="assets/js/pages/datatables.init.js"></script>
-    <script src="assets/js/pages/dashboard.init.js"></script>
+    <!-- <script src="assets/js/pages/dashboard.init.js"></script> -->
     <script src="assets/libs/parsleyjs/parsley.min.js"></script>
     <script src="assets/js/pages/form-validation.init.js"></script>
     <script src="partials/val.js"></script>
@@ -147,51 +148,9 @@ $pager = $_GET['page'];
             })
         })
     </script>
-    <script>
-        function selectDate() {
-            // Get the selected option value
-            var month1 = document.getElementById("month1").value;
-            var month2 = document.getElementById("month2").value;
-            var price = document.getElementById("price").value;
-            // Get the input element
-            var resultInput = document.getElementById("total");
-            // Count the number of occurrences of the selected value in the option box
-            var resultmonth = (month2 - month1) + 1;
-            var totalprice = resultmonth * price;
 
-            // Display the count in the input element
-            resultInput.value = totalprice;
-        }
-        function proPrice() {
-            // Get the selected option value
-            var selectElement = document.getElementById("produk");
-            var selectedOption = selectElement.options[selectElement.selectedIndex];
-            // Get the current count from the data-attribute of the selected option
-            var count = selectedOption.getAttribute("data-proprice");
-            var qty = document.getElementById("qty").value;
-            // Get the input element
-            var resultSampah = document.getElementById("total_sampah");
-            var price = document.getElementById("price");
-            // Count the number of occurrences of the selected value in the option box
-            var countsampah = count * qty;
 
-            // Display the count in the input element
-            resultSampah.value = countsampah;
-            price.value = count;
-        }
-        function printPageArea(areaID) {
-            var printContent = document.getElementById(areaID).innerHTML;
-            var originalContent = document.body.innerHTML;
-            document.body.innerHTML = printContent;
-            window.print();
-            document.body.innerHTML = originalContent;
-        }
-    </script>
 
-    <?php
-    include "partials/js.php";
-    include "partials/val.php";
-    ?>
 </body>
 
 </html>

@@ -1,12 +1,12 @@
 <?php
 include '../../config.php';
 
-$query = mysqli_query($conn, "SELECT max(kode_kategori) as kodeTerbesar FROM kategori");
+$query = mysqli_query($conn, "SELECT max(id) as kodeTerbesar FROM kategori");
 $data = mysqli_fetch_array($query);
 $kode_kategori = $data['kodeTerbesar'];
 $kode_kategori++;
-$huruf = "PNB";
-$kodekategori = sprintf("%03s", $kode_kategori);
+$huruf = "R";
+$kodekategori = $huruf . sprintf("%03s", $kode_kategori);
 ?>
 <div class="row">
     <form class="" id="formKategori" enctype="multipart/form-data">

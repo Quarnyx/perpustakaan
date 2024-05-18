@@ -1,12 +1,12 @@
 <?php
 include '../../config.php';
 
-$query = mysqli_query($conn, "SELECT max(kode_supplier) as kodeTerbesar FROM supplier");
+$query = mysqli_query($conn, "SELECT max(id) as kodeTerbesar FROM supplier");
 $data = mysqli_fetch_array($query);
 $kode_supplier = $data['kodeTerbesar'];
 $kode_supplier++;
-$huruf = "PNB";
-$kodesupplier = sprintf("%03s", $kode_supplier);
+$huruf = "SUP";
+$kodesupplier = $huruf . sprintf("%03s", $kode_supplier);
 ?>
 <div class="row">
     <form class="" id="formSupplier" enctype="multipart/form-data">

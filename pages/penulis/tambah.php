@@ -1,12 +1,12 @@
 <?php
 include '../../config.php';
 
-$query = mysqli_query($conn, "SELECT max(kode_penulis) as kodeTerbesar FROM penulis");
+$query = mysqli_query($conn, "SELECT max(id) as kodeTerbesar FROM penulis");
 $data = mysqli_fetch_array($query);
 $kode_penulis = $data['kodeTerbesar'];
 $kode_penulis++;
 $huruf = "PNL";
-$kodepenulis = sprintf("%03s", $kode_penulis);
+$kodepenulis = $huruf . sprintf("%03s", $kode_penulis);
 ?>
 <div class="row">
     <form class="" id="formPenulis" enctype="multipart/form-data">

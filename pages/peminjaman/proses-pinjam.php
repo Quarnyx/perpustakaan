@@ -47,7 +47,7 @@ if ($_GET['act'] == "tambahSimpan") {
     $kode_kategori = $data['kodeTerbesar'];
     $kode_kategori++;
     $huruf = "PJ";
-    $pinjam_id = $huruf . rand(100, 999) . $kode_kategori;
+    $pinjam_id = $huruf . rand(100, 999);
     $sql = "INSERT INTO `peminjaman` (
         `tanggal_pinjam`, 
         `tanggal_kembali`, 

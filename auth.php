@@ -16,6 +16,7 @@ if (isset($_POST['login'])) {
             $_SESSION['id'] = $row['id'];
             $_SESSION['username'] = $username;
             $_SESSION['level'] = $row['level'];
+            $_SESSION['foto'] = $row['foto'];
             header('Location: app.php?page=dashboard');
         } else {
             header("location:login.php?pass=invalid");

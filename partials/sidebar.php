@@ -5,12 +5,12 @@
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div class="">
-                <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                <img src="assets/images/users/<?php echo $_SESSION['foto'] ?>" alt="" class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
-                <h4 class="font-size-16 mb-1"><?php echo "Admin" ?></h4>
+                <h4 class="font-size-16 mb-1"><?php echo $_SESSION['nama_petugas'] ?></h4>
                 <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
-                    <?php echo "Petugas" ?></span>
+                    <?php echo $_SESSION['level'] ?></span>
             </div>
         </div>
 
@@ -22,7 +22,7 @@
 
                 <li>
                     <a href="?page=dashboard" class="waves-effect">
-                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
+                        <i class="ri-dashboard-line"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -39,7 +39,9 @@
                         <li><a href="?page=penulis">Penulis</a></li>
                         <li><a href="?page=kategori">Kategori</a></li>
                         <li><a href="?page=anggota">Anggota</a></li>
-                        <li><a href="?page=petugas">Pengurus</a></li>
+                        <?php if ($_SESSION['level'] == 'admin') { ?>
+                            <li><a href="?page=petugas">Pengurus</a></li>
+                        <?php } ?>
                     </ul>
                 </li>
                 <li>
