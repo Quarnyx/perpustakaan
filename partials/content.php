@@ -23,4 +23,25 @@ if ($_GET['page'] == "kategori") {
 if ($_GET['page'] == "buku") {
     include "./pages/buku/index.php";
 }
+if ($_GET['page'] == "peminjaman") {
+    include "./pages/peminjaman/index.php";
+}
+if ($_GET['page'] == "pengembalian") {
+    include "./pages/pengembalian/index.php";
+}
+if ($_GET['page'] == "lap_peminjaman") {
+    include "./pages/laporan/peminjaman.php";
+}
+if ($_GET['page'] == "lap_buku") {
+    include "./pages/laporan/buku.php";
+}
+if ($_GET['page'] == "lap_pengurus") {
+    include "./pages/laporan/pengurus.php";
+}
+if ($_GET['page'] == "lap_pengembalian") {
+    include "./pages/laporan/pengembalian.php";
+}
+if ($_GET['page'] == "lap_denda") {
+    include "./pages/laporan/denda.php";
+}
 ?>

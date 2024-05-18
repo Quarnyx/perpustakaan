@@ -48,9 +48,9 @@
                         <span>Transaksi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="?page=inputpel_sampah">Peminjaman</a></li>
-                        <li><a href="?page=datapel_sampah">Pengembalian</a></li>
-                        <li><a href="?page=datapel_sampah">Denda</a></li>
+                        <li><a href="?page=peminjaman">Peminjaman</a></li>
+                        <li><a href="?page=pengembalian">Pengembalian</a></li>
+                        <li><a href="?page=denda">Denda</a></li>
                     </ul>
                 </li>
                 <li>
@@ -59,11 +59,11 @@
                         <span>Laporan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="?page=inputpel_sampah">Laporan Peminjaman</a></li>
-                        <li><a href="?page=datapel_sampah">Laporan Pengurus</a></li>
-                        <li><a href="?page=datapel_sampah">Laporan Pengembalian</a></li>
-                        <li><a href="?page=datapel_sampah">Laporan Katalog Buku</a></li>
-                        <li><a href="?page=datapel_sampah">Laporan Denda</a></li>
+                        <li><a href="?page=lap_peminjaman">Laporan Peminjaman</a></li>
+                        <li><a href="?page=lap_pengurus">Laporan Pengurus</a></li>
+                        <li><a href="?page=lap_pengembalian">Laporan Pengembalian</a></li>
+                        <li><a href="?page=lap_buku">Laporan Katalog Buku</a></li>
+                        <li><a href="?page=lap_denda">Laporan Denda</a></li>
 
                     </ul>
                 </li>

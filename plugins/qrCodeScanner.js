@@ -19,7 +19,7 @@ qrcode.callback = res => {
       track.stop();
     });
 
-   
+
     canvasElement.hidden = true;
     btnScanQR.hidden = false;
   }
@@ -28,8 +28,8 @@ qrcode.callback = res => {
 btnScanQR.onclick = () => {
   navigator.mediaDevices
     .getUserMedia({ video: { facingMode: "environment" } })
-    .then(function(stream) {
-      scanning = true;      
+    .then(function (stream) {
+      scanning = true;
       btnScanQR.hidden = true;
       canvasElement.hidden = false;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
