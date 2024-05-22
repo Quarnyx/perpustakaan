@@ -96,32 +96,7 @@ $row = mysqli_fetch_array($sql);
                             value="<?php echo $row['stok'] ?>" disabled>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="mb-3">
-                        <div class="card">
-                            <div class="card-header">
-                                QR Code
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img class="rounded me-2" width="150"
-                                            src="assets/images/qrcode/buku-<?php echo $row['kode_buku'] ?>.png"
-                                            alt="Card image cap">
-                                    </div>
-                                    <div class="col-md-6" style="align-content:center">
 
-                                        <p>Buku ini milik Perpustakaan SMANCEP</p>
-                                        <a class="btn btn-primary" target="_blank"
-                                            href="pages/buku/cetak.php?id=<?php echo $row['id'] ?>&count=<?php echo $row['stok'] ?>">Print
-                                            QR
-                                            Code</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

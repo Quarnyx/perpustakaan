@@ -103,7 +103,7 @@
                                     <input name="petugas_id" value="<?php echo $_SESSION['id']; ?>" hidden>
                                     <div class="col-12">
                                         <input type="hidden" class="form-control" placeholder="Kode Buku" name="kode_buku"
-                                            id="outputData" required value="0">
+                                            id="outputData" required value="0" required>
                                         <div id="judul-buku"></div>
                                     </div>
                                     <?php
@@ -126,9 +126,7 @@
                                     </div>
                                 </div>
                                 <button class="btn btn-primary" type="submit" id="submit">Pilih</button>
-                                <div class="error" id="pinjamError">
 
-                                </div>
                             </form>
 
                         </div>

@@ -39,9 +39,8 @@
                         <li><a href="?page=penulis">Penulis</a></li>
                         <li><a href="?page=kategori">Kategori</a></li>
                         <li><a href="?page=anggota">Anggota</a></li>
-                        <?php if ($_SESSION['level'] == 'admin') { ?>
-                            <li><a href="?page=petugas">Pengurus</a></li>
-                        <?php } ?>
+                        <li><a href="?page=petugas">Pengurus</a></li>
+
                     </ul>
                 </li>
                 <li>
@@ -52,7 +51,6 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="?page=peminjaman">Peminjaman</a></li>
                         <li><a href="?page=pengembalian">Pengembalian</a></li>
-                        <li><a href="?page=denda">Denda</a></li>
                     </ul>
                 </li>
                 <li>

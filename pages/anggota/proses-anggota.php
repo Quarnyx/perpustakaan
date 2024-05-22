@@ -48,6 +48,8 @@ if ($_GET['act'] == 'tambahAnggota') {
     $no_telp = mysqli_real_escape_string($conn, $_POST['no_telp']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $status = mysqli_real_escape_string($conn, $_POST['status']);
+    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+
     $foto = $_FILES['foto']['name'];
     // foto
     $ekstensi_diperbolehkan = array('png', 'jpg', 'jpeg', 'gif');
@@ -61,11 +63,11 @@ if ($_GET['act'] == 'tambahAnggota') {
             //Mengupload gambar
             move_uploaded_file($file_tmp, '../../assets/images/users/' . $foto);
             //Sql jika menggunakan foto
-            $sql = "INSERT INTO `anggota` (`nis`, `nama_anggota`, `no_telp`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `status`, `foto`) VALUES ('$nis', '$nama_anggota', '$no_telp', '$email', '$tempat_lahir', '$tanggal_lahir', '$jenis_kelamin', '$status', '$foto')";
+            $sql = "INSERT INTO `anggota` (`nis`, `nama_anggota`, `no_telp`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `status`, `foto`, `password`) VALUES ('$nis', '$nama_anggota', '$no_telp', '$email', '$tempat_lahir', '$tanggal_lahir', '$jenis_kelamin', '$status', '$foto', '$password')";
         }
     } else {
         //Sql jika tidak menggunakan foto, maka akan memakai gambar foto_default.png
-        $sql = "INSERT INTO `anggota` (`nis`, `nama_anggota`, `no_telp`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `status`, `foto`) VALUES ('$nis', '$nama_anggota', '$no_telp', '$email', '$tempat_lahir', '$tanggal_lahir', '$jenis_kelamin', '$status', 'default.png')";
+        $sql = "INSERT INTO `anggota` (`nis`, `nama_anggota`, `no_telp`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `status`, `foto`, `password`) VALUES ('$nis', '$nama_anggota', '$no_telp', '$email', '$tempat_lahir', '$tanggal_lahir', '$jenis_kelamin', '$status', 'default.png', '$password')";
     }
     $query = mysqli_query($conn, $sql);
 
@@ -100,6 +102,8 @@ if ($_GET['act'] == 'updateAnggota') {
     $ekstensi = strtolower(end($x));
     $ukuran = $_FILES['foto']['size'];
     $file_tmp = $_FILES['foto']['tmp_name'];
+    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+
 
     if (!empty($foto_baru)) {
         if (in_array($ekstensi, $ekstensi_diperbolehkan) === true) {
@@ -118,7 +122,8 @@ if ($_GET['act'] == 'updateAnggota') {
             `no_telp` = '$no_telp',
             `email` = '$email',
             `status` = '$status',
-            `foto` = '$foto_baru'
+            `foto` = '$foto_baru',
+            `password` = '$password'
             WHERE id = '$id'";
         }
     } else {
@@ -131,13 +136,21 @@ if ($_GET['act'] == 'updateAnggota') {
         `jenis_kelamin` = '$jenis_kelamin',
         `no_telp` = '$no_telp',
         `email` = '$email',
-        `status` = '$status'
+        `status` = '$status',
+        `password` = '$password'
         WHERE id = '$id'";
     }
     $query = mysqli_query($conn, $sql);
 
 
 
+}
+if ($_GET['act'] == 'updatepass') {
+    $id = $_POST['id'];
+    $password = md5($_POST["password"]);
+    $sql = "UPDATE anggota SET password = '$password' WHERE id = '$id'";
+
+    $query = mysqli_query($conn, $sql);
 }
 
 

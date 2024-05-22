@@ -42,16 +42,6 @@
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="" class="form-label">Level</label>
-                    <select class="form-select" id="level" required="" name="level">
-                        <option selected="" value="petugas">Petugas</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="mb-3">
                     <label for="" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password"
                         required="">

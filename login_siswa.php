@@ -32,15 +32,14 @@
                         </div>
                     </div>
 
-                    <h4 class="text-muted text-center font-size-18"><b>Perpustakaan SMANCEP</b></h4>
+                    <h4 class="text-muted text-center font-size-18"><b>Siswa<br>Perpustakaan SMANCEP</b></h4>
 
                     <div class="p-3">
-                        <form class="form-horizontal mt-3" action="auth.php" method="post">
+                        <form class="form-horizontal mt-3" action="auth_siswa.php" method="post">
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" type="text" required="" placeholder="Username"
-                                        name="username">
+                                    <input class="form-control" type="text" required="" placeholder="NIS" name="nis">
                                 </div>
                             </div>
 
@@ -53,18 +52,15 @@
 
                             <div class="form-group mb-3 text-center row mt-3 pt-1">
                                 <div class="col-12">
-                                    <button class="btn btn-info w-100 waves-effect waves-light" type="submit"
+                                    <button class="btn btn-success w-100 waves-effect waves-light" type="submit"
                                         name="login">Log In</button>
-                                    <a href="login_siswa.php"
-                                        class="mt-2 btn btn-success w-100 waves-effect waves-light" type="submit"
-                                        name="login">Log In Siswa</a>
                                 </div>
                             </div>
                             <?php if (isset($_GET['username'])) { ?>
                                 <div class="form-group mb-3 text-center row mt-3 pt-1">
                                     <div class="col-12">
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            Username salah atau tidak ada
+                                            NIS salah atau tidak ada
                                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                                 aria-label="Close"></button>
                                         </div>

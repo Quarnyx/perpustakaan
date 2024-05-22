@@ -1,10 +1,9 @@
 <?php
 session_start();
-$level = $_SESSION['level'];
 $sessionid = $_SESSION['id'];
 
-if (!isset($_SESSION['username'])) {
-    header("location:login.php?pass=invalid");
+if (!isset($_SESSION['nis'])) {
+    header("location:login_siswa.php?pass=invalid");
 }
 include "config.php";
 $pager = $_GET['page'];
@@ -21,9 +20,9 @@ $pager = $_GET['page'];
 
     <!-- Begin page -->
     <div id="layout-wrapper">
-        <?php include "partials/header.php"; ?>
+        <?php include "partials/header-siswa.php"; ?>
         <!-- ========== Left Sidebar Start ========== -->
-        <?php include "partials/sidebar.php"; ?>
+        <?php include "partials/sidebar-siswa.php"; ?>
         <!-- Left Sidebar End -->
         <!-- ============================================================== -->
         <!-- Start right Content here -->
@@ -51,7 +50,10 @@ $pager = $_GET['page'];
                     <!-- apexcharts -->
                     <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
                     <!-- Main Content Start Here -->
+
                     <?php include "partials/content.php"; ?>
+
+
                     <!-- Content End -->
                 </div>
             </div>
@@ -77,12 +79,6 @@ $pager = $_GET['page'];
             <h6 class="text-center mb-0">Pilih Tema</h6>
             <div class="p-4">
                 <div class="mb-2">
-                    <button type="button" class="btn btn-setting btn-success waves-effect waves-light"
-                        data-bs-toggle="modal">
-                        <i class="ri-add-box-line align-middle me-2"></i> Setting Profil
-                    </button>
-                </div>
-                <div class="mb-2">
                     <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="layout-1">
                 </div>
                 <div class="form-check form-switch mb-3">
@@ -104,23 +100,7 @@ $pager = $_GET['page'];
 
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
-    <div id="setting" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog"
-        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="judul"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="setting-app">
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger  waves-effect" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
     <!-- JAVASCRIPT -->
 
     <script src="assets/libs/metismenu/metisMenu.min.js"></script>
@@ -166,17 +146,22 @@ $pager = $_GET['page'];
                 theme: 'bootstrap4'
             })
         })
-        $('.btn-setting').on('click', function () {
+    </script>
+    <script>
+        $('.editpassword').on('click', function () {
+            var id = <?php echo $sessionid ?>;
             $.ajax({
-                url: 'pages/setting.php',
+                url: 'pages/anggota/updatepass.php',
                 method: 'post',
+                data: { id: id },
                 success: function (data) {
-                    $('#setting-app').html(data);
-                    document.getElementById("judul").innerHTML = 'Setting';
+                    $('#tampil_data').html(data);
+                    document.getElementById("judul").innerHTML = 'Ganti Password';
                 }
             });
-            $('#setting').modal('show');
+            $('#modal').modal('show');
         });
+
     </script>
 
 

@@ -102,6 +102,9 @@
             data: null,
             render: function (data, type, row) {
                 return '<div class="button-items">' +
+                    '<button type="button" class="btn btn-light waves-effect waves-light editpassword" data-bs-toggle="modal" data-bs-target="#editPassword" data-id="' +
+                    row.id +
+                    '"><i class="ri-key-2-line align-middle me-2"></i>Ganti Password</button>' +
                     '<button type="button" class="btn btn-light waves-effect waves-light editanggota" data-bs-toggle="modal" data-bs-target="" data-id="' +
                     row.id +
                     '"><i class="ri-user-2-line align-middle me-2"></i> Edit Profil</button>'
@@ -175,4 +178,17 @@
         });
     });
 
+    $('#tabelAnggota').on('click', '.editpassword', function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url: 'pages/anggota/updatepass.php',
+            method: 'post',
+            data: { id: id },
+            success: function (data) {
+                $('#tampil_data').html(data);
+                document.getElementById("judul").innerHTML = 'Ganti Password';
+            }
+        });
+        $('#modal').modal('show');
+    });
 </script>

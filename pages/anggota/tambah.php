@@ -39,6 +39,11 @@
 
                     </div>
                 </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" required=""
+                        name="password">
+                </div>
                 <div class="alert alert-info alert-dismissible fade show mb-0" role="alert">
                     <i class="mdi mdi-alert-circle-outline me-2"></i>
                     Disarankan menggunakan foto resolusi 300x300px (1:1)

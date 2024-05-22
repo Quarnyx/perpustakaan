@@ -36,7 +36,7 @@
                     </div>
                     <div class="avatar-sm">
                         <span class="avatar-title bg-light text-success rounded-3">
-                            <i class="mdi mdi-currency-usd font-size-24"></i>
+                            <i class="ri-hand-coin-line font-size-24"></i>
                         </span>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="avatar-sm">
                         <span class="avatar-title bg-light text-danger rounded-3">
-                            <i class="mdi mdi-currency-usd font-size-24"></i>
+                            <i class="ri-user-2-line font-size-24"></i>
                         </span>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="avatar-sm">
                         <span class="avatar-title bg-light text-primary rounded-3">
-                            <i class="fas fa-coins font-size-24"></i>
+                            <i class="ri-book-2-line font-size-24"></i>
                         </span>
                     </div>
                 </div>
@@ -131,12 +131,12 @@
                                 echo "0";
                             } ?>
                         </h4>
-                        <p class="text-muted mb-0">Denda<br> yang Belum dibayar
+                        <p class="text-muted mb-0">Denda<br> yang sudah dibayar
                         </p>
                     </div>
                     <div class="avatar-sm">
-                        <span class="avatar-title bg-light text-success rounded-3">
-                            <i class="fas fa-coins font-size-24"></i>
+                        <span class="avatar-title bg-light text-danger rounded-3">
+                            <i class="ri-money-dollar-circle-line font-size-24"></i>
                         </span>
                     </div>
                 </div>

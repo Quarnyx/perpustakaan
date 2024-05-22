@@ -15,19 +15,19 @@ session_start();
     include '../../config.php';
 
     $query = mysqli_query($conn, "select * from profil_aplikasi");
-    $row = mysqli_fetch_array($query);
+    $rowa = mysqli_fetch_array($query);
     ?>
     <div class="container-fluid">
         <div class="">
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-sm-2 float-left">
-                        <img src="../../assets/images/<?php echo $row['logo']; ?>" width="95px" alt="brand" />
+                        <img src="../../assets/images/<?php echo $rowa['logo']; ?>" width="95px" alt="brand" />
                     </div>
                     <div class="col-sm-10 float-left">
                         <h3>Perpustakaan SMANCEP</h3>
-                        <h6><?php echo $row['alamat'] . ', Telp ' . $row['telepon']; ?></h6>
-                        <h6><?php echo $row['website']; ?></h6>
+                        <h6><?php echo $rowa['alamat'] . ', Telp ' . $rowa['telepon']; ?></h6>
+                        <h6><?php echo $rowa['website']; ?></h6>
                     </div>
                 </div>
             </div>
@@ -79,6 +79,35 @@ session_start();
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <?php
+    function tanggal($tanggal)
+    {
+        $bulan = array(
+            1 => 'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+        $split = explode('-', $tanggal);
+        return $split[2] . ' ' . $bulan[(int) $split[1]] . ' ' . $split[0];
+    }
+    ?>
+
+    <div class="mt-3" style="text-align:end;">
+        <hr>
+        <p class="font-weight-bold">Kendal, <?= tanggal(date('Y-m-d')) ?><br>Mengetahui,</p>
+        <div class="mt-5">
+            <p class="font-weight-bold"><?php echo $rowa['nama_pimpinan'] ?><br>Kepala SMAN 1 Cepiring</p>
         </div>
     </div>
 </body>

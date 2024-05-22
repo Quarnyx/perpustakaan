@@ -77,26 +77,7 @@ $row = mysqli_fetch_array($sql);
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="" class="form-label">Level</label>
-                            <select class="form-select" id="level" required="" name="level">
-                                <?php
-                                if ($row['level'] === 'admin') {
-                                    ?>
-                                    <option value="petugas">Petugas</option>
-                                    <option selected="" value="admin">Admin</option>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <option selected="" value="petugas">Petugas</option>
-                                    <option value="admin">admin</option>
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
+
                 </div>
                 <div>
                     <button class="btn btn-primary" type="submit" id="submit">Update</button>

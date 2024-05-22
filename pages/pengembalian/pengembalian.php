@@ -10,7 +10,7 @@ $selisiha = strtotime($tanggal_pengembalian) - strtotime($tanggal_kembali);
 $selisih = $selisiha / (60 * 60 * 24);
 $denda = 0;
 if ($selisih > 0) {
-    $denda = $selisih * 7000;
+    $denda = $selisih * 500;
 }
 ?>
 <div class="row">

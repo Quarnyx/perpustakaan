@@ -22,10 +22,15 @@ if ($_GET['act'] == "simpanPengembalian") {
     $denda = $_POST['denda'];
     $petugas_id = $_POST['petugas_id'];
     echo $peminjaman_id;
+    $idbuku = mysqli_query($conn, "SELECT buku_id FROM peminjaman WHERE id = '$peminjaman_id'");
+    $buku_id = mysqli_fetch_array($idbuku)['buku_id'];
+    $sqlupdatebuku = "UPDATE buku SET stok = stok + 1 WHERE id = '$buku_id'";
+    mysqli_query($conn, $sqlupdatebuku);
     $sql = "INSERT INTO `pengembalian` (`peminjaman_id`, `tanggal_pengembalian`, `denda`, `petugas_id`) VALUES ('$peminjaman_id', '$tanggal_pengembalian', '$denda', '$petugas_id')";
     mysqli_query($conn, $sql);
     $sqla = "UPDATE `peminjaman` SET `status` = 'kembali' WHERE (`id` = '$peminjaman_id')";
     mysqli_query($conn, $sqla);
+
 }
 
 ?>

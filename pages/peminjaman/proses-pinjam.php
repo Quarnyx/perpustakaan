@@ -74,9 +74,14 @@ if ($_GET['act'] == "tambahSimpan") {
         echo "<script>   document.getElementById('submit').disabled = false; </script>";
 
     }
+    $sqlupdatebuku = "UPDATE buku SET stok = stok - 1 WHERE id = '$buku_id'";
+    mysqli_query($conn, $sqlupdatebuku);
 }
 if ($_GET['act'] == "hapusPinjam") {
     $id = $_POST['id'];
+    $idbuku = mysqli_query($conn, "SELECT buku_id FROM peminjaman WHERE id = '$id'");
+    $buku_id = mysqli_fetch_array($idbuku)['buku_id'];
+    $sqlupdatebuku = "UPDATE buku SET stok = stok + 1 WHERE id = '$buku_id'";
     // Execute the SQL DELETE query to remove the row from the MySQL database
     $sql = "DELETE FROM peminjaman WHERE id='$id'";
     mysqli_query($conn, $sql);
@@ -84,6 +89,7 @@ if ($_GET['act'] == "hapusPinjam") {
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    mysqli_query($conn, $sqlupdatebuku);
 }
 
 ?>

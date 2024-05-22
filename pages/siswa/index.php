@@ -5,33 +5,7 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-4">
-        <div style="margin-top:5px; margin-bottom:35px   ">
-            <button type="button" class="btn btn-tambah btn-success waves-effect waves-light" data-bs-toggle="modal"
-                data-bs-target="#addUser">
-                <i class="ri-add-box-line align-middle me-2"></i> Tambah
-            </button>
-        </div>
-    </div>
-</div>
-<div id="modal" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog"
-    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="judul"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="tampil_data">
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger  waves-effect" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -169,7 +143,7 @@
         function fetchBooks(filters = {}) {
 
             $.ajax({
-                url: 'pages/buku/proses-buku.php?act=cariBuku',
+                url: 'pages/siswa/proses-siswa.php?act=cariBuku',
                 type: 'POST',
                 data: filters,
                 success: function (data) {
@@ -184,8 +158,6 @@
                             '<h4 class="card-title text-center">' + book.nama_buku + '</h4>' +
                             '<div class="text-center">' +
                             '<button type="button"  data-bs-toggle="modal" data-bs-target="#addUser" data-id="' + book.id + '" class="info-buku m-2 btn btn-primary waves-effect waves-light"><i class="ri-information-line align-middle"></i></button>' +
-                            '<button type="button" class="edit-buku m-2 btn btn-light waves-effect waves-light" data-id="' + book.id + '"><i class="ri-edit-2-line align-middle"></i></button>' +
-                            '<button type="button" class="hapus-buku m-2 btn btn-danger waves-effect waves-light"  data-id="' + book.id + '"><i class="ri-delete-bin-3-line align-middle"></i></button>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
@@ -211,66 +183,12 @@
 
             fetchBooks(filters);
         });
-        $('#bookList').on('click', '.hapus-buku', function () {
-            var id = $(this).data('id');
-            Swal.fire({
-                icon: 'warning',
-                title: 'Yakin ingin menghapus buku ini?',
-                showDenyButton: false,
-                showCancelButton: true,
-                confirmButtonText: 'Ya'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "POST",
-                        url: 'pages/buku/proses-buku.php?act=hapusBuku',
-                        data: {
-                            id: id
-                        }, //set data
-                        beforeSend: function () {
-                        },
-                        success: function (
-                            response) {
-                            fetchBooks();
-                            Swal.fire('Buku Terhapus', response, 'success')
-                        }
-                    });
-                } else if (result.isDenied) {
-                    Swal.fire('Aksi batal', '', 'info')
-                }
-            });
-        });
-    });
-    $('.btn-tambah').on('click', function () {
-        var level = $(this).attr("level");
-        $.ajax({
-            url: 'pages/buku/tambah.php',
-            method: 'post',
-            data: { level: level },
-            success: function (data) {
-                $('#tampil_data').html(data);
-                document.getElementById("judul").innerHTML = 'Tambah Buku';
-            }
-        });
-        $('#modal').modal('show');
+
     });
     $('#bookList').on('click', '.info-buku', function () {
         var id = $(this).data("id");
         $.ajax({
-            url: 'pages/buku/info.php',
-            method: 'post',
-            data: { id: id },
-            success: function (data) {
-                $('#tampil_data').html(data);
-                document.getElementById("judul").innerHTML = 'Lihat Informasi Buku';
-            }
-        });
-        $('#modal').modal('show');
-    });
-    $('#bookList').on('click', '.edit-buku', function () {
-        var id = $(this).data("id");
-        $.ajax({
-            url: 'pages/buku/update.php',
+            url: 'pages/siswa/info.php',
             method: 'post',
             data: { id: id },
             success: function (data) {

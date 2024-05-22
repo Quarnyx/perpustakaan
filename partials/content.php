@@ -2,6 +2,10 @@
 if ($_GET['page'] == "dashboard") {
     include "./pages/dashboard.php";
 }
+
+if ($_GET['page'] == "dashboard-siswa") {
+    include "./pages/dashboard-siswa.php";
+}
 if ($_GET['page'] == "petugas") {
     include "./pages/petugas/index.php";
 }
@@ -43,5 +47,11 @@ if ($_GET['page'] == "lap_pengembalian") {
 }
 if ($_GET['page'] == "lap_denda") {
     include "./pages/laporan/denda.php";
+}
+if ($_GET['page'] == "lap_denda") {
+    include "./pages/laporan/denda.php";
+}
+if ($_GET['page'] == "buku-siswa") {
+    include "./pages/siswa/index.php";
 }
 ?>
