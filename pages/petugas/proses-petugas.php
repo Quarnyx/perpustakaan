@@ -26,7 +26,7 @@ if ($_GET['act'] == 'tambahPetugas') {
     $nama_petugas = mysqli_real_escape_string($conn, $_POST['nama_petugas']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, md5($_POST['password']));
-    $level = mysqli_real_escape_string($conn, 'petugas');
+    $level = mysqli_real_escape_string($conn, 'Petugas');
     $status = mysqli_real_escape_string($conn, $_POST['status']);
     $foto = $_FILES['foto']['name'];
     // foto
@@ -56,7 +56,7 @@ if ($_GET['act'] == 'updatePetugas') {
     $id = mysqli_real_escape_string($conn, $_POST['id']);
     $nama_petugas = mysqli_real_escape_string($conn, $_POST['nama_petugas']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $level = mysqli_real_escape_string($conn, 'petugas');
+    $level = mysqli_real_escape_string($conn, 'Petugas');
     $status = mysqli_real_escape_string($conn, $_POST['status']);
     $foto_baru = $_FILES['foto']['name'];
     $foto = $_POST['foto_lama'];

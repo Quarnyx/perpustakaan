@@ -26,7 +26,7 @@ $row = mysqli_fetch_array($sql);
                 </div>
             </div>
             <div class="col-md-6">
-                <?php if ($row['stok'] > 1) { ?>
+                <?php if ($row['stok'] >= 1) { ?>
                     <div class="alert alert-success" role="alert">
                         Buku Tersedia
                     </div>

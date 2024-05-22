@@ -74,14 +74,16 @@ $pager = $_GET['page'];
             </div>
             <!-- Settings -->
             <hr class="mt-0" />
+
+            <div class="p-4 mb-2">
+                <button type="button" class="btn btn-setting btn-success waves-effect waves-light"
+                    data-bs-toggle="modal">
+                    <i class="ri-add-box-line align-middle me-2"></i> Setting Profil
+                </button>
+            </div>
             <h6 class="text-center mb-0">Pilih Tema</h6>
             <div class="p-4">
-                <div class="mb-2">
-                    <button type="button" class="btn btn-setting btn-success waves-effect waves-light"
-                        data-bs-toggle="modal">
-                        <i class="ri-add-box-line align-middle me-2"></i> Setting Profil
-                    </button>
-                </div>
+
                 <div class="mb-2">
                     <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="layout-1">
                 </div>
@@ -150,7 +152,6 @@ $pager = $_GET['page'];
     <!-- <script src="assets/js/pages/dashboard.init.js"></script> -->
     <script src="assets/libs/parsleyjs/parsley.min.js"></script>
     <script src="assets/js/pages/form-validation.init.js"></script>
-    <script src="partials/val.js"></script>
 
     <!-- Sweet Alerts js -->
     <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>

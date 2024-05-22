@@ -1,12 +1,6 @@
 <?php
 include '../../config.php';
 
-$query = mysqli_query($conn, "SELECT max(id) as kodeTerbesar FROM kategori");
-$data = mysqli_fetch_array($query);
-$kode_kategori = $data['kodeTerbesar'];
-$kode_kategori++;
-$huruf = "R";
-$kodekategori = $huruf . sprintf("%03s", $kode_kategori);
 ?>
 <div class="row">
     <form class="" id="formKategori" enctype="multipart/form-data">
@@ -14,10 +8,7 @@ $kodekategori = $huruf . sprintf("%03s", $kode_kategori);
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="" class="form-label">Kode Kategori</label>
-                    <input type="text" class="form-control" name="kode_kategori" id="kode_kategori" disabled
-                        value="<?= $kodekategori; ?>">
-                    <input type="hidden" class="form-control" name="kode_kategori" id="kode_kategori"
-                        value="<?= $kodekategori; ?>">
+                    <input type="text" class="form-control" name="kode_kategori" id="kode_kategori">
                 </div>
             </div>
             <div class="col-md-6">
