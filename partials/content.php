@@ -48,8 +48,8 @@ if ($_GET['page'] == "lap_pengembalian") {
 if ($_GET['page'] == "lap_denda") {
     include "./pages/laporan/denda.php";
 }
-if ($_GET['page'] == "lap_denda") {
-    include "./pages/laporan/denda.php";
+if ($_GET['page'] == "lap_anggota") {
+    include "./pages/laporan/anggota.php";
 }
 if ($_GET['page'] == "buku-siswa") {
     include "./pages/siswa/index.php";

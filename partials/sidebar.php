@@ -61,6 +61,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="?page=lap_peminjaman">Laporan Peminjaman</a></li>
                         <li><a href="?page=lap_pengurus">Laporan Pengurus</a></li>
+                        <li><a href="?page=lap_anggota">Laporan Anggota</a></li>
                         <li><a href="?page=lap_pengembalian">Laporan Pengembalian</a></li>
                         <li><a href="?page=lap_buku">Laporan Katalog Buku</a></li>
                         <li><a href="?page=lap_denda">Laporan Denda</a></li>
