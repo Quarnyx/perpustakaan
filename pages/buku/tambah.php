@@ -144,6 +144,10 @@ $sessionid = $_SESSION['id'];
                         <label for="stok" class="form-label">Stok</label>
                         <input type="number" id="stok" class="form-control" placeholder="99" required="" name="stok">
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="stok" class="form-label">Barcode</label>
+                        <input type="text" id="barcode" class="form-control" required="" name="barcode">
+                    </div>
                 </div>
 
 

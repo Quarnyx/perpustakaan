@@ -68,23 +68,38 @@ if ($_GET['act'] == "tambahBuku") {
     // $newnumber = $number['num'] + 1;
     // $newid = $rak . '-' . $newnumber;
     $newid = $kodebuku . '-' . rand(1000, 9999);
-    include ('../../plugins/phpqrcode/qrlib.php');
-    $tempDir = "../../assets/images/qrcode/";
+    include('../../plugins/barcode.php');
+    $symbology = 'code-128';
+    $data = $_POST['barcode'];
+    $filename = '../../assets/images/qrcode/' . $data . '.png';
+    $options = array(
+        'w' => 400,
+        'h' => 150
+    );
+    $generator = new barcode_generator();
+    // header('Content-Type: image/png');
+    $image = $generator->render_image($symbology, $data, $options);
+    imagepng($image, $filename);
+    imagedestroy($image);
+    echo '../../assets/images/qrcode/' . $data . '.png';
 
-    $codeContents = $newid;
-    // generate filename, 
-    $fileName = 'buku-' . $codeContents . '.png';
+    // include('../../plugins/phpqrcode/qrlib.php');
+    // $tempDir = "../../assets/images/qrcode/";
 
-    $pngAbsoluteFilePath = $tempDir . $fileName;
-    $urlRelativeFilePath = $tempDir . $fileName;
+    // $codeContents = $newid;
+    // // generate filename, 
+    // $fileName = 'buku-' . $codeContents . '.png';
 
-    // generating
-    if (!file_exists($pngAbsoluteFilePath)) {
-        QRcode::png($codeContents, $pngAbsoluteFilePath, QR_ECLEVEL_H, 4);
-    } else {
-        echo 'Error';
-        echo '<hr />';
-    }
+    // $pngAbsoluteFilePath = $tempDir . $fileName;
+    // $urlRelativeFilePath = $tempDir . $fileName;
+
+    // // generating
+    // if (!file_exists($pngAbsoluteFilePath)) {
+    //     QRcode::png($codeContents, $pngAbsoluteFilePath, QR_ECLEVEL_H, 4);
+    // } else {
+    //     echo 'Error';
+    //     echo '<hr />';
+    // }
     // foto
     $ekstensi_diperbolehkan = array('png', 'jpg', 'jpeg', 'gif');
     $x = explode('.', $foto);
@@ -92,6 +107,8 @@ if ($_GET['act'] == "tambahBuku") {
     $ukuran = $_FILES['foto']['size'];
     $file_tmp = $_FILES['foto']['tmp_name'];
     move_uploaded_file($file_tmp, '../../assets/images/books/' . $foto);
+
+    $tanggal_masuk = date('Y-m-d');
 
     $sql = "INSERT INTO `buku`(
         `kode_buku`, 
@@ -106,7 +123,9 @@ if ($_GET['act'] == "tambahBuku") {
         `supplier_id`, 
         `tahun`, 
         `kategori_id`, 
-        `petugas_id`) VALUES (
+        `petugas_id`,
+        `barcode`,
+        `tanggal_masuk`) VALUES (
             '$newid',
             '$_POST[halaman]',
             '$_POST[judul]',
@@ -119,9 +138,16 @@ if ($_GET['act'] == "tambahBuku") {
             '$_POST[supplier]',
             '$_POST[tahun]',
             '$_POST[kategori]',
-            '$_POST[user]')";
+            '$_POST[user]',
+            '$_POST[barcode]',
+            '$tanggal_masuk')";
 
     $query = mysqli_query($conn, $sql);
+    if ($query) {
+        echo "success";
+    } else {
+        echo "failed";
+    }
 
 
 }

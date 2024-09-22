@@ -5,7 +5,6 @@ include '../../config.php';
 $sql = mysqli_query($conn, "select * from v_buku where id = $_POST[id]");
 $row = mysqli_fetch_array($sql);
 ?>
-?>
 <form class="" id="formBuku" enctype="multipart/form-data">
     <input type="hidden" name="id" id="id" value="<?= $row['id']; ?>">
     <div class="row">

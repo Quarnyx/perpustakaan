@@ -65,6 +65,9 @@
                         <li><a href="?page=lap_pengembalian">Laporan Pengembalian</a></li>
                         <li><a href="?page=lap_buku">Laporan Katalog Buku</a></li>
                         <li><a href="?page=lap_denda">Laporan Denda</a></li>
+                        <li><a href="?page=lap_buku_masuk">Laporan Buku Masuk</a></li>
+                        <li><a href="?page=lap_buku_keluar">Laporan Buku Keluar</a></li>
+
 
                     </ul>
                 </li>

@@ -54,4 +54,10 @@ if ($_GET['page'] == "lap_anggota") {
 if ($_GET['page'] == "buku-siswa") {
     include "./pages/siswa/index.php";
 }
+if ($_GET['page'] == "lap_buku_masuk") {
+    include "./pages/laporan-buku-masuk/index.php";
+}
+if ($_GET['page'] == "lap_buku_keluar") {
+    include "./pages/laporan-buku-keluar/index.php";
+}
 ?>

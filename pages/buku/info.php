@@ -104,9 +104,9 @@ $row = mysqli_fetch_array($sql);
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <img class="rounded me-2" width="150"
-                                            src="assets/images/qrcode/buku-<?php echo $row['kode_buku'] ?>.png"
+                                    <div class="col-md-6">
+                                        <img class="rounded me-2 img-responsive w-100" width=""
+                                            src="assets/images/qrcode/<?php echo $row['barcode'] ?>.png"
                                             alt="Card image cap">
                                     </div>
                                     <div class="col-md-6" style="align-content:center">

@@ -91,10 +91,12 @@
                         <h4 class="card-title">Scan QR Code Buku</h4>
                         <div class="row">
                             <div class="mb-3">
-                                <a id="btn-scan-qr">
+                                <input id="barcode" name="barcode" class="form-control" placeholder="Scan Barcode" required=""
+                                    type="text">
+                                <!-- <a id="btn-scan-qr">
                                     <img src="assets/images/qrcode/qricon.svg" style="display:block; margin:auto;">
                                 </a>
-                                <canvas hidden="" id="qr-canvas" style="display:block; margin:auto;"></canvas>
+                                <canvas hidden="" id="qr-canvas" style="display:block; margin:auto;"></canvas> -->
 
                             </div>
                             <form id="form-buku" enctype="multipart/form-data">
@@ -103,7 +105,7 @@
                                     <input name="petugas_id" value="<?php echo $_SESSION['id']; ?>" hidden>
                                     <div class="col-12">
                                         <input type="hidden" class="form-control" placeholder="Kode Buku" name="kode_buku"
-                                            id="outputData" required value="0" required>
+                                            id="input_barcode" required value="0" required>
                                         <div id="judul-buku"></div>
                                     </div>
                                     <?php
@@ -211,6 +213,43 @@
         ]
     });
 
+    $('#barcode').on('keypress', function (e) {
+        if (e.which == 13) {
+            var barcode = $(this).val();
+            $.ajax({
+                url: 'pages/peminjaman/proses-pinjam.php?act=judulBuku',
+                type: 'POST',
+                data: { barcode: barcode },
+                success: function (data) {
+                    console.log(data);
+                    $('#judul-buku').html(data);
+
+                }
+            });
+        }
+    });
+    $("#form-buku").submit(function (e) {
+        e.preventDefault(); //prevent the form from submitting normally
+        var barcode = $('#barcode').val();
+        formData = new FormData(this);
+
+        formData.append('barcode', barcode);
+        $.ajax({
+            url: "pages/peminjaman/proses-pinjam.php?act=tambahSimpan",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                $('#pinjamError').show();
+                $('#pinjamError').html(data);
+                $('#tabelPinjam').DataTable().ajax.reload();
+            }
+        });
+
+    })
+
 
     var hidden = $("#canvas").attr("hidden");
     // Select the qr-canvas element
@@ -243,23 +282,7 @@
     observer.observe(qrCanvas, { attributes: true });
     // observer.disconnect();
 
-    $("#form-buku").submit(function (e) {
-        e.preventDefault(); //prevent the form from submitting normally
-        $.ajax({
-            url: "pages/peminjaman/proses-pinjam.php?act=tambahSimpan",
-            type: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (data) {
-                $('#pinjamError').show();
-                $('#pinjamError').html(data);
-                $('#tabelPinjam').DataTable().ajax.reload();
-            }
-        });
 
-    })
     $('#tabelPinjam').on('click', '.hapus-pinjam', function () {
         var id = $(this).data('id');
         Swal.fire({

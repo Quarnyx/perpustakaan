@@ -1,15 +1,31 @@
 <?php
 include '../../config.php';
 if ($_GET['act'] == "judulBuku") {
-    $kode_buku = $_POST['kode_buku'];
-    $query = mysqli_query($conn, "SELECT nama_buku FROM buku where kode_buku='$kode_buku'");
+    $barcode = $_POST['barcode'];
+    $query = mysqli_query($conn, "SELECT nama_buku, stok, id FROM buku where barcode='$barcode'");
     $row = mysqli_fetch_array($query);
 
+    // hitung stok-(pengembalian-peminjaman)
     if ($row > 0) {
-        echo "<p class='h5 text-center'>" . $row['nama_buku'] . "</p>";
+        $stokasli = $row['stok'];
+        $id = $row['id'];
+        $sqla = mysqli_query($conn, "SELECT * FROM peminjaman WHERE buku_id = '$id' AND status = 'pinjam' ");
+        $pinjam = mysqli_num_rows($sqla);
 
+        $sqlb = mysqli_query($conn, "SELECT * FROM v_pengembalian WHERE buku_id = '$id'");
+        $pengembalian = mysqli_num_rows($sqlb);
+        if ($pinjam > 0) {
+            $stok = $stokasli - ($pinjam - $pengembalian);
+        } else {
+            $stok = $stokasli;
+        }
+        // echo $pinjam . " | " . $pengembalian . " | " . $stokasli;
+        echo "<p class='h5 text-center'>" . $row['nama_buku'] . "</p>";
+        echo "<p class='text-center'>Stok Tersedia : " . $stok . "</p>";
+    } else {
+        echo "<p class='text-danger'>Buku tidak ditemukan</p>";
     }
-    ;
+
 }
 if ($_GET['act'] == "tabelPinjam") {
     $anggota_id = $_GET['id'];
@@ -26,9 +42,9 @@ if ($_GET['act'] == "tabelPinjam") {
     echo json_encode(array('data' => $data));
 }
 if ($_GET['act'] == "tambahSimpan") {
-    $kodebuku = $_POST['kode_buku'];
+    $barcode = $_POST['barcode'];
     //cari buku
-    $query = mysqli_query($conn, "SELECT * FROM buku where kode_buku='$kodebuku'");
+    $query = mysqli_query($conn, "SELECT * FROM buku where barcode='$barcode'");
     $row = mysqli_fetch_array($query);
     $buku_id = $row['id'];
     $anggota_id = $_POST['anggota_id'];
@@ -74,14 +90,14 @@ if ($_GET['act'] == "tambahSimpan") {
         echo "<script>   document.getElementById('submit').disabled = false; </script>";
 
     }
-    $sqlupdatebuku = "UPDATE buku SET stok = stok - 1 WHERE id = '$buku_id'";
+    // $sqlupdatebuku = "UPDATE buku SET stok = stok - 1 WHERE id = '$buku_id'";
     mysqli_query($conn, $sqlupdatebuku);
 }
 if ($_GET['act'] == "hapusPinjam") {
     $id = $_POST['id'];
     $idbuku = mysqli_query($conn, "SELECT buku_id FROM peminjaman WHERE id = '$id'");
     $buku_id = mysqli_fetch_array($idbuku)['buku_id'];
-    $sqlupdatebuku = "UPDATE buku SET stok = stok + 1 WHERE id = '$buku_id'";
+    // $sqlupdatebuku = "UPDATE buku SET stok = stok + 1 WHERE id = '$buku_id'";
     // Execute the SQL DELETE query to remove the row from the MySQL database
     $sql = "DELETE FROM peminjaman WHERE id='$id'";
     mysqli_query($conn, $sql);

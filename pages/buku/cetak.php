@@ -40,7 +40,7 @@ $row = mysqli_fetch_array($sql);
         .tg {
             table-layout: fixed;
             width: 5cm;
-            height: 6cm;
+            height: 3cm;
             background-repeat: no-repeat;
             background-size: cover;
             /* margin: 0.3cm */
@@ -58,7 +58,7 @@ $row = mysqli_fetch_array($sql);
                 <tbody>
                     <tr>
                         <td class="text-center"><img class="img-fluid"
-                                src="../../assets/images/qrcode/buku-<?php echo "$row[kode_buku]" ?>.png" alt="Image"
+                                src="../../assets/images/qrcode/<?php echo "$row[barcode]" ?>.png" alt="Image"
                                 style="width: 4cm"></td>
                     </tr>
                     <tr>

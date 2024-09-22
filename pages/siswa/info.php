@@ -88,12 +88,36 @@ $row = mysqli_fetch_array($sql);
                             value="<?php echo $row['rak'] ?>" disabled>
                     </div>
                 </div>
+                <?php
+                // hitung stok-(pengembalian-peminjaman)
+                if ($row['stok'] > 0) {
+                    $stokasli = $row['stok'];
+                    $id = $row['id'];
+                    $sqla = mysqli_query($conn, "SELECT * FROM peminjaman WHERE buku_id = '$id'");
+                    $pinjam = mysqli_num_rows($sqla);
+
+                    $sqlb = mysqli_query($conn, "SELECT * FROM v_pengembalian WHERE buku_id = '$id'");
+                    $pengembalian = mysqli_num_rows($sqlb);
+                    if ($pinjam > 0) {
+                        // echo $pinjam . " | " . $pengembalian . " | " . $stokasli;
+                
+                        $stok = $stokasli - ($pinjam - $pengembalian);
+                    } else {
+                        $stok = $stokasli;
+                    }
+                }
+                ?>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="stok" class="form-label">Stok</label>
                         <input type="number" id="stok" class="form-control" placeholder="99" required="" name="stok"
                             value="<?php echo $row['stok'] ?>" disabled>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="stok" class="form-label">Stok Tersedia</label>
+                        <input type="number" id="stok" class="form-control" placeholder="99" required="" name="stok"
+                            value="<?php echo $stok ?>" disabled>
                     </div>
                 </div>
 
